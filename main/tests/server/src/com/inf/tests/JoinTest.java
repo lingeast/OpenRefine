@@ -1,8 +1,9 @@
-package com.google.refine.tests.expr.functions.math;
+package com.inf.tests;
 
+import java.util.ArrayList;
 import java.util.Properties;
 
-import org.slf4j.LoggerFactory;
+import org.json.JSONArray;
 import org.testng.Assert;
 import org.testng.annotations.BeforeTest;
 import org.testng.annotations.Test;
@@ -11,12 +12,15 @@ import com.google.refine.expr.EvalError;
 import com.google.refine.grel.ControlFunctionRegistry;
 import com.google.refine.grel.Function;
 
-public class FactNTest {
-	
-	static Properties bindings;
-	
+public class JoinTest {
+    static Properties bindings;
+    ArrayList<Integer> rawArr;
     @BeforeTest
     public void init() {
+        rawArr = new ArrayList<Integer>();
+        for (int i = 0; i < 20; i++) {
+            rawArr.add(i);
+        }
         bindings = null;
     }
     
@@ -37,26 +41,19 @@ public class FactNTest {
     }
     
   @Test
+  public void testJoinJSONArray() {
+      JSONArray jsonArr = new JSONArray(rawArr);
+      invoke("join", jsonArr, ",");
+  }
+  
+  @Test
+  public void testJoinArray() {
+      Assert.assertTrue(rawArr.toArray().getClass().isArray());
+      invoke("join", rawArr.toArray(), ",");
+  }
+  
+  @Test
   public void testInvalidParam() {
-	  Assert.assertTrue(invoke("factn") instanceof EvalError);
-	  Assert.assertTrue(invoke("factn", 2, "astr") instanceof EvalError);
-	  Assert.assertTrue(invoke("factn", "astr", "3") instanceof EvalError);
-  }
-  @Test(expectedExceptions = IllegalArgumentException.class)
-  public void testException() {
-	  Assert.assertTrue(invoke("factn", -1, 5) instanceof EvalError);
-  }
-  @Test
-  public void testFactN() {
-	  long val1 = 8;
-	  long val2 = 24;
-	  Assert.assertEquals(invoke("factn", 4, 2), val1);
-	  Assert.assertEquals(invoke("factn", 4, 1), val2);
-  }
-
-
-  @Test
-  public void factorial() {
-	  Assert.assertTrue(invoke("factn", "1") instanceof EvalError);
+          Assert.assertTrue(invoke("join", 2) instanceof EvalError);
   }
 }

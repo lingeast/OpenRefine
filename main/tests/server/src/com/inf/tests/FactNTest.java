@@ -1,4 +1,4 @@
-package com.google.refine.tests.expr.functions.math;
+package com.inf.tests;
 
 import java.util.Properties;
 
@@ -10,7 +10,8 @@ import com.google.refine.expr.EvalError;
 import com.google.refine.grel.ControlFunctionRegistry;
 import com.google.refine.grel.Function;
 
-public class CombinTest {
+public class FactNTest {
+	
 	static Properties bindings;
 	
     @BeforeTest
@@ -36,28 +37,25 @@ public class CombinTest {
     
   @Test
   public void testInvalidParam() {
-	  Assert.assertTrue(invoke("combin") instanceof EvalError);
-	  Assert.assertTrue(invoke("combin", 2, "astr") instanceof EvalError);
-	  Assert.assertTrue(invoke("combin", "astr", "3") instanceof EvalError);
+	  Assert.assertTrue(invoke("factn") instanceof EvalError);
+	  Assert.assertTrue(invoke("factn", 2, "astr") instanceof EvalError);
+	  Assert.assertTrue(invoke("factn", "astr", "3") instanceof EvalError);
   }
-  
-  /*
   @Test(expectedExceptions = IllegalArgumentException.class)
   public void testException() {
 	  Assert.assertTrue(invoke("factn", -1, 5) instanceof EvalError);
   }
-  */
-  
   @Test
-  public void testCombin() {
-	  long val1 = 6;
-	  long val2 = 15;
-	  Assert.assertEquals(invoke("combin", 4, 2), val1);
-	  Assert.assertEquals(invoke("combin", 6, 4), val2);
+  public void testFactN() {
+	  long val1 = 8;
+	  long val2 = 24;
+	  Assert.assertEquals(invoke("factn", 4, 2), val1);
+	  Assert.assertEquals(invoke("factn", 4, 1), val2);
   }
-  
+
+
   @Test
-  public void combination() {
-    //throw new RuntimeException("Test not implemented");
+  public void factorial() {
+	  Assert.assertTrue(invoke("factn", "1") instanceof EvalError);
   }
 }
