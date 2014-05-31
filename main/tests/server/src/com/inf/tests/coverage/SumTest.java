@@ -1,5 +1,6 @@
-package com.inf.tests;
+package com.inf.tests.coverage;
 
+import java.util.ArrayList;
 import java.util.Properties;
 
 import org.testng.Assert;
@@ -10,8 +11,10 @@ import com.google.refine.expr.EvalError;
 import com.google.refine.grel.ControlFunctionRegistry;
 import com.google.refine.grel.Function;
 
-public class CombinTest {
-	static Properties bindings;
+
+
+public class SumTest {
+static Properties bindings;
 	
     @BeforeTest
     public void init() {
@@ -36,9 +39,8 @@ public class CombinTest {
     
   @Test
   public void testInvalidParam() {
-	  Assert.assertTrue(invoke("combin") instanceof EvalError);
-	  Assert.assertTrue(invoke("combin", 2, "astr") instanceof EvalError);
-	  Assert.assertTrue(invoke("combin", "astr", "3") instanceof EvalError);
+	  Assert.assertTrue(invoke("sum") instanceof EvalError);
+	  Assert.assertTrue(invoke("sum", 2, "astr") instanceof EvalError);
   }
   
   /*
@@ -49,15 +51,22 @@ public class CombinTest {
   */
   
   @Test
-  public void testCombin() {
-	  long val1 = 6;
-	  long val2 = 15;
-	  Assert.assertEquals(invoke("combin", 4, 2), val1);
-	  Assert.assertEquals(invoke("combin", 6, 4), val2);
+  public void testSum() {
+	  int arrLen = 10;
+	  
+	  ArrayList<Integer> tList = new ArrayList<Integer> ();
+	  Integer[] tArr = new Integer[arrLen];
+	  
+	  double sum = 0;
+	  for (int i = 0; i < arrLen; i++) {
+		  tList.add(i+1);
+		  tArr[i] = i + 1;
+		  sum += i + 1;
+	  }
+	  //Assert.assertEquals(invoke("sum", (Object[]) tArr), sum);
+	  Assert.assertEquals(invoke("sum", tList), sum);
+	  
   }
-  
-  @Test
-  public void combination() {
-    //throw new RuntimeException("Test not implemented");
-  }
+
+
 }

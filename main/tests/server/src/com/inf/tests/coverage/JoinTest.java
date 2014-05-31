@@ -1,8 +1,9 @@
-package com.inf.tests;
+package com.inf.tests.coverage;
 
 import java.util.ArrayList;
 import java.util.Properties;
 
+import org.json.JSONArray;
 import org.testng.Assert;
 import org.testng.annotations.BeforeTest;
 import org.testng.annotations.Test;
@@ -11,13 +12,15 @@ import com.google.refine.expr.EvalError;
 import com.google.refine.grel.ControlFunctionRegistry;
 import com.google.refine.grel.Function;
 
-
-
-public class SumTest {
-static Properties bindings;
-	
+public class JoinTest {
+    static Properties bindings;
+    ArrayList<Integer> rawArr;
     @BeforeTest
     public void init() {
+        rawArr = new ArrayList<Integer>();
+        for (int i = 0; i < 20; i++) {
+            rawArr.add(i);
+        }
         bindings = null;
     }
     
@@ -38,35 +41,19 @@ static Properties bindings;
     }
     
   @Test
-  public void testInvalidParam() {
-	  Assert.assertTrue(invoke("sum") instanceof EvalError);
-	  Assert.assertTrue(invoke("sum", 2, "astr") instanceof EvalError);
+  public void testJoinJSONArray() {
+      JSONArray jsonArr = new JSONArray(rawArr);
+      invoke("join", jsonArr, ",");
   }
-  
-  /*
-  @Test(expectedExceptions = IllegalArgumentException.class)
-  public void testException() {
-	  Assert.assertTrue(invoke("factn", -1, 5) instanceof EvalError);
-  }
-  */
   
   @Test
-  public void testSum() {
-	  int arrLen = 10;
-	  
-	  ArrayList<Integer> tList = new ArrayList<Integer> ();
-	  Integer[] tArr = new Integer[arrLen];
-	  
-	  double sum = 0;
-	  for (int i = 0; i < arrLen; i++) {
-		  tList.add(i+1);
-		  tArr[i] = i + 1;
-		  sum += i + 1;
-	  }
-	  //Assert.assertEquals(invoke("sum", (Object[]) tArr), sum);
-	  Assert.assertEquals(invoke("sum", tList), sum);
-	  
+  public void testJoinArray() {
+      Assert.assertTrue(rawArr.toArray().getClass().isArray());
+      invoke("join", rawArr.toArray(), ",");
   }
-
-
+  
+  @Test
+  public void testInvalidParam() {
+          Assert.assertTrue(invoke("join", 2) instanceof EvalError);
+  }
 }

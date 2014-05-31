@@ -1,9 +1,7 @@
-package com.inf.tests;
+package com.inf.tests.coverage;
 
-import java.util.ArrayList;
 import java.util.Properties;
 
-import org.json.JSONArray;
 import org.testng.Assert;
 import org.testng.annotations.BeforeTest;
 import org.testng.annotations.Test;
@@ -12,8 +10,9 @@ import com.google.refine.expr.EvalError;
 import com.google.refine.grel.ControlFunctionRegistry;
 import com.google.refine.grel.Function;
 
-public class ReverseTest {
-    static Properties bindings;
+public class CombinTest {
+	static Properties bindings;
+	
     @BeforeTest
     public void init() {
         bindings = null;
@@ -34,18 +33,31 @@ public class ReverseTest {
             return function.call(bindings,args);
         }
     }
-  @Test
-  public void testReverseJSONArray() {
-      ArrayList<Integer> rawArr = new ArrayList<Integer>();
-      for (int i = 0; i < 20; i++) {
-          rawArr.add(i);
-      }
-      JSONArray jsonArr = new JSONArray(rawArr);
-      invoke("reverse", jsonArr);
-      
-  }
+    
   @Test
   public void testInvalidParam() {
-          Assert.assertTrue(invoke("reverse", 2) instanceof EvalError);
+	  Assert.assertTrue(invoke("combin") instanceof EvalError);
+	  Assert.assertTrue(invoke("combin", 2, "astr") instanceof EvalError);
+	  Assert.assertTrue(invoke("combin", "astr", "3") instanceof EvalError);
+  }
+  
+  /*
+  @Test(expectedExceptions = IllegalArgumentException.class)
+  public void testException() {
+	  Assert.assertTrue(invoke("factn", -1, 5) instanceof EvalError);
+  }
+  */
+  
+  @Test
+  public void testCombin() {
+	  long val1 = 6;
+	  long val2 = 15;
+	  Assert.assertEquals(invoke("combin", 4, 2), val1);
+	  Assert.assertEquals(invoke("combin", 6, 4), val2);
+  }
+  
+  @Test
+  public void combination() {
+    //throw new RuntimeException("Test not implemented");
   }
 }

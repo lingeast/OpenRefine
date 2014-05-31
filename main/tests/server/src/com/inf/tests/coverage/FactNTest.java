@@ -1,4 +1,4 @@
-package com.inf.tests;
+package com.inf.tests.coverage;
 
 import java.util.Properties;
 

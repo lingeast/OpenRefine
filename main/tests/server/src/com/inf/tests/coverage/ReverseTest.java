@@ -1,4 +1,4 @@
-package com.inf.tests;
+package com.inf.tests.coverage;
 
 import java.util.ArrayList;
 import java.util.Properties;
@@ -12,15 +12,10 @@ import com.google.refine.expr.EvalError;
 import com.google.refine.grel.ControlFunctionRegistry;
 import com.google.refine.grel.Function;
 
-public class JoinTest {
+public class ReverseTest {
     static Properties bindings;
-    ArrayList<Integer> rawArr;
     @BeforeTest
     public void init() {
-        rawArr = new ArrayList<Integer>();
-        for (int i = 0; i < 20; i++) {
-            rawArr.add(i);
-        }
         bindings = null;
     }
     
@@ -39,21 +34,18 @@ public class JoinTest {
             return function.call(bindings,args);
         }
     }
-    
   @Test
-  public void testJoinJSONArray() {
+  public void testReverseJSONArray() {
+      ArrayList<Integer> rawArr = new ArrayList<Integer>();
+      for (int i = 0; i < 20; i++) {
+          rawArr.add(i);
+      }
       JSONArray jsonArr = new JSONArray(rawArr);
-      invoke("join", jsonArr, ",");
+      invoke("reverse", jsonArr);
+      
   }
-  
-  @Test
-  public void testJoinArray() {
-      Assert.assertTrue(rawArr.toArray().getClass().isArray());
-      invoke("join", rawArr.toArray(), ",");
-  }
-  
   @Test
   public void testInvalidParam() {
-          Assert.assertTrue(invoke("join", 2) instanceof EvalError);
+          Assert.assertTrue(invoke("reverse", 2) instanceof EvalError);
   }
 }
