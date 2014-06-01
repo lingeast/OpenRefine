@@ -1,7 +1,9 @@
 package com.inf.tests.coverage;
 
+import java.io.StringWriter;
 import java.util.Properties;
 
+import org.json.JSONWriter;
 import org.testng.Assert;
 import org.testng.annotations.BeforeTest;
 import org.testng.annotations.Test;
@@ -55,7 +57,9 @@ public class FactNTest {
 
 
   @Test
-  public void factorial() {
-	  Assert.assertTrue(invoke("factn", "1") instanceof EvalError);
+  public void testWrite() {
+      StringWriter sw = new StringWriter();
+      JSONWriter jw = new JSONWriter(sw);
+      
   }
 }

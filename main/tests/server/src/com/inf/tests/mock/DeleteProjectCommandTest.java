@@ -22,10 +22,7 @@ import org.testng.annotations.BeforeTest;
 import org.testng.annotations.Test;
 
 import com.google.refine.ProjectManager;
-import com.google.refine.ProjectMetadata;
 import com.google.refine.commands.project.DeleteProjectCommand;
-import com.google.refine.model.Project;
-import com.google.refine.process.ProcessManager;
 import com.google.refine.tests.RefineTest;
 
 public class DeleteProjectCommandTest extends RefineTest{
@@ -35,7 +32,7 @@ public class DeleteProjectCommandTest extends RefineTest{
         logger = LoggerFactory.getLogger(this.getClass());
     }
 
-    //System Under Test
+    // System Under Test
     DeleteProjectCommand SUT = null;
     
     // variables
@@ -46,8 +43,6 @@ public class DeleteProjectCommandTest extends RefineTest{
     HttpServletRequest request = null;
     HttpServletResponse response = null;
     ProjectManager projMan = null;
-    //Project proj = null;
-    //ProcessManager processMan = null;
     PrintWriter pw = null;
     @BeforeMethod
     
@@ -57,7 +52,6 @@ public class DeleteProjectCommandTest extends RefineTest{
         request = mock(HttpServletRequest.class);
         response = mock(HttpServletResponse.class);
         pw = mock(PrintWriter.class);
-        //proj = new Project();
         SUT = new DeleteProjectCommand();
     }
 

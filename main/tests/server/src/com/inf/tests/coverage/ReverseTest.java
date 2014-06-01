@@ -1,6 +1,7 @@
 package com.inf.tests.coverage;
 
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.Properties;
 
 import org.json.JSONArray;
@@ -41,6 +42,17 @@ public class ReverseTest {
           rawArr.add(i);
       }
       JSONArray jsonArr = new JSONArray(rawArr);
+      invoke("reverse", jsonArr);
+      
+  }
+  
+  @Test
+  public void testReverseSet() {
+      HashSet<Integer> set = new HashSet<Integer>();
+      for (int i = 0; i < 20; i++) {
+          set.add(i);
+      }
+      JSONArray jsonArr = new JSONArray(set);
       invoke("reverse", jsonArr);
       
   }
