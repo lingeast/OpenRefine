@@ -3,12 +3,15 @@ package com.inf.tests.coverage;
 import java.io.StringWriter;
 import java.util.Properties;
 
+import org.json.JSONException;
+import org.json.JSONObject;
 import org.json.JSONWriter;
 import org.testng.Assert;
 import org.testng.annotations.BeforeTest;
 import org.testng.annotations.Test;
 
 import com.google.refine.expr.EvalError;
+import com.google.refine.expr.functions.math.FactN;
 import com.google.refine.grel.ControlFunctionRegistry;
 import com.google.refine.grel.Function;
 
@@ -57,9 +60,13 @@ public class FactNTest {
 
 
   @Test
-  public void testWrite() {
+  public void testWriter() throws JSONException {
       StringWriter sw = new StringWriter();
       JSONWriter jw = new JSONWriter(sw);
+      FactN fnObj = new FactN();
+      fnObj.write(jw, null);
+      JSONObject jo = new JSONObject(sw.toString());
+      Assert.assertEquals("number", jo.get("returns"));
       
   }
 }

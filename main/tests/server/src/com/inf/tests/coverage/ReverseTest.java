@@ -1,10 +1,14 @@
 package com.inf.tests.coverage;
 
+import java.io.StringWriter;
 import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.Properties;
 
 import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
+import org.json.JSONWriter;
 import org.testng.Assert;
 import org.testng.annotations.BeforeTest;
 import org.testng.annotations.Test;
@@ -12,6 +16,7 @@ import org.testng.annotations.Test;
 import com.google.refine.expr.EvalError;
 import com.google.refine.grel.ControlFunctionRegistry;
 import com.google.refine.grel.Function;
+import com.google.refine.expr.functions.arrays.Reverse;
 
 public class ReverseTest {
     static Properties bindings;
@@ -59,5 +64,16 @@ public class ReverseTest {
   @Test
   public void testInvalidParam() {
           Assert.assertTrue(invoke("reverse", 2) instanceof EvalError);
+  }
+  
+  @Test
+  public void testWriter() throws JSONException {
+      StringWriter sw = new StringWriter();
+      JSONWriter jw = new JSONWriter(sw);
+      Reverse rsObj = new Reverse();
+      rsObj.write(jw, null);
+      JSONObject jo = new JSONObject(sw.toString());
+      Assert.assertEquals("Reverses array a", jo.get("description"));
+      
   }
 }

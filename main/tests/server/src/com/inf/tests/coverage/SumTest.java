@@ -1,13 +1,18 @@
 package com.inf.tests.coverage;
 
+import java.io.StringWriter;
 import java.util.ArrayList;
 import java.util.Properties;
 
+import org.json.JSONException;
+import org.json.JSONObject;
+import org.json.JSONWriter;
 import org.testng.Assert;
 import org.testng.annotations.BeforeTest;
 import org.testng.annotations.Test;
 
 import com.google.refine.expr.EvalError;
+import com.google.refine.expr.functions.math.Sum;
 import com.google.refine.grel.ControlFunctionRegistry;
 import com.google.refine.grel.Function;
 
@@ -66,6 +71,17 @@ static Properties bindings;
 	  //Assert.assertEquals(invoke("sum", (Object[]) tArr), sum);
 	  Assert.assertEquals(invoke("sum", tList), sum);
 	  
+  }
+  
+  @Test
+  public void testWriter() throws JSONException {
+      StringWriter sw = new StringWriter();
+      JSONWriter jw = new JSONWriter(sw);
+      Sum smObj = new Sum();
+      smObj.write(jw, null);
+      JSONObject jo = new JSONObject(sw.toString());
+      Assert.assertEquals("Sums numbers in array a", jo.get("description"));
+      
   }
 
 

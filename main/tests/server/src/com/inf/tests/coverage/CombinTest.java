@@ -1,12 +1,18 @@
 package com.inf.tests.coverage;
 
+import java.io.StringWriter;
 import java.util.Properties;
 
+import org.json.JSONException;
+import org.json.JSONObject;
+import org.json.JSONWriter;
 import org.testng.Assert;
 import org.testng.annotations.BeforeTest;
 import org.testng.annotations.Test;
 
 import com.google.refine.expr.EvalError;
+import com.google.refine.expr.functions.arrays.Reverse;
+import com.google.refine.expr.functions.math.Combin;
 import com.google.refine.grel.ControlFunctionRegistry;
 import com.google.refine.grel.Function;
 
@@ -57,7 +63,13 @@ public class CombinTest {
   }
   
   @Test
-  public void combination() {
-    //throw new RuntimeException("Test not implemented");
+  public void testWriter() throws JSONException {
+      StringWriter sw = new StringWriter();
+      JSONWriter jw = new JSONWriter(sw);
+      Combin cbObj = new Combin();
+      cbObj.write(jw, null);
+      JSONObject jo = new JSONObject(sw.toString());
+      Assert.assertEquals("Returns the factorial of a number", jo.get("description"));
+      
   }
 }
