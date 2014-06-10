@@ -67,19 +67,54 @@ public class IncTest {
       new Object[] { now, 1, "minute", chMinute },
       new Object[] { now, 1, "sec", chSec },
       
+      new Object[] { now, 1.4, "hour", chHour },
+      new Object[] { now, 1.4, "day", chDay },
+      new Object[] { now, 1.4, "year", chYear },
+      new Object[] { now, 1.4, "week", chWeek },
+      new Object[] { now, 1.4, "month", chMonth },
+      new Object[] { now, 1.4, "minute", chMinute },
+      new Object[] { now, 1.4, "sec", chSec },
+      /*
+      new Object[] { now, "1", "hour", chHour },
+      new Object[] { now, "1", "day", chDay },
+      new Object[] { now, "1", "year", chYear },
+      new Object[] { now, "1", "week", chWeek },
+      new Object[] { now, "1", "month", chMonth },
+      new Object[] { now, "1", "minute", chMinute },
+      new Object[] { now, "1", "sec", chSec },
+      */
+      
       new Object[] { date, 1, "hour", chHour },
       new Object[] { date, 1, "day", chDay },
       new Object[] { date, 1, "year", chYear },
       new Object[] { date, 1, "week", chWeek },
       new Object[] { date, 1, "month", chMonth },
       new Object[] { date, 1, "minute", chMinute },
-      new Object[] { date, 1, "sec", chSec }
+      new Object[] { date, 1, "sec", chSec },
+      
+      new Object[] { date, 1.4, "hour", chHour },
+      new Object[] { date, 1.4, "day", chDay },
+      new Object[] { date, 1.4, "year", chYear },
+      new Object[] { date, 1.4, "week", chWeek },
+      new Object[] { date, 1.4, "month", chMonth },
+      new Object[] { date, 1.4, "minute", chMinute },
+      new Object[] { date, 1.4, "sec", chSec },
+      /*
+      new Object[] { date, "1", "hour", chHour },
+      new Object[] { date, "1", "day", chDay },
+      new Object[] { date, "1", "year", chYear },
+      new Object[] { date, "1", "week", chWeek },
+      new Object[] { date, "1", "month", chMonth },
+      new Object[] { date, "1", "minute", chMinute },
+      new Object[] { date, "1", "sec", chSec }
+      */
+
       
     };
   }
 
   @Test(dataProvider = "provideDates")
-  public void testInc(Object obj, Integer amount, String unit, Calendar ans) {
+  public void testInc(Object obj, Number amount, String unit, Calendar ans) {
       Object[] paras = new Object[3];
       paras[0] = obj;
       paras[1] = amount;
