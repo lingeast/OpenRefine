@@ -2,7 +2,6 @@ package com.inf.tests.coverage;
 
 import java.util.Properties;
 
-import org.python.modules.math;
 import org.testng.Assert;
 import org.testng.annotations.BeforeTest;
 import org.testng.annotations.Test;
