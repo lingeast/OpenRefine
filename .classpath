@@ -85,5 +85,6 @@
 	<classpathentry exported="true" kind="lib" path="main/webapp/WEB-INF/lib/fluent-hc-4.2.5.jar"/>
 	<classpathentry exported="true" kind="lib" path="main/webapp/WEB-INF/lib/httpmime-4.2.5.jar"/>
 	<classpathentry exported="true" kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER"/>
+	<classpathentry kind="lib" path="lib/mockito-all-1.9.5.jar"/>
 	<classpathentry kind="output" path="build"/>
 </classpath>
