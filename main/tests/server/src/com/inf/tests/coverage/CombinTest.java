@@ -69,7 +69,7 @@ public class CombinTest {
       Combin cbObj = new Combin();
       cbObj.write(jw, null);
       JSONObject jo = new JSONObject(sw.toString());
-      Assert.assertEquals("Returns the factorial of a number", jo.get("description"));
+      Assert.assertEquals("Returns the number of combinations for n elements as divided into k", jo.get("description"));
       
   }
 }

@@ -74,16 +74,7 @@ public class IncTest {
       new Object[] { now, 1.4, "month", chMonth },
       new Object[] { now, 1.4, "minute", chMinute },
       new Object[] { now, 1.4, "sec", chSec },
-      /*
-      new Object[] { now, "1", "hour", chHour },
-      new Object[] { now, "1", "day", chDay },
-      new Object[] { now, "1", "year", chYear },
-      new Object[] { now, "1", "week", chWeek },
-      new Object[] { now, "1", "month", chMonth },
-      new Object[] { now, "1", "minute", chMinute },
-      new Object[] { now, "1", "sec", chSec },
-      */
-      
+
       new Object[] { date, 1, "hour", chHour },
       new Object[] { date, 1, "day", chDay },
       new Object[] { date, 1, "year", chYear },
@@ -99,17 +90,6 @@ public class IncTest {
       new Object[] { date, 1.4, "month", chMonth },
       new Object[] { date, 1.4, "minute", chMinute },
       new Object[] { date, 1.4, "sec", chSec },
-      /*
-      new Object[] { date, "1", "hour", chHour },
-      new Object[] { date, "1", "day", chDay },
-      new Object[] { date, "1", "year", chYear },
-      new Object[] { date, "1", "week", chWeek },
-      new Object[] { date, "1", "month", chMonth },
-      new Object[] { date, "1", "minute", chMinute },
-      new Object[] { date, "1", "sec", chSec }
-      */
-
-      
     };
   }
 
@@ -123,6 +103,7 @@ public class IncTest {
       Assert.assertEquals(paras.length, 3);
       Assert.assertEquals(invoke("inc", obj, amount, unit), ans);
   }
+  
 /*
   @Test
   public void write() {
